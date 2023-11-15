@@ -1,38 +1,22 @@
-import React, { useState, useEffect}  from 'react';
-import getAccessToken from './component/spotify/spotifyTokenAccess'
-import getLikedSongs from './component/spotify/SpotifyService'
+// App.tsx
 
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-function App() {
-   const [likedSongs, setLikedSongs] = useState<any[]>([]);
-   const [loading, setLoading] = useState(true);
+import Home from './component/home'
+import SpotifyLogin from './component/spotify/SpotifyLogin';
+import Callback from './component/spotify/Callback';
 
-   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const accessToken = await getAccessToken();
-     const songs = await getLikedSongs(accessToken);
-         setLikedSongs(songs);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const App: React.FC = () => {
   return (
-    <>
-            {loading ? (
-        <p>Chargement en cours...</p>
-      ) : (
-        <p>Les musiques Spotify ont été chargées</p>
-        // Vous pouvez également afficher la liste des titres likés ici en utilisant la variable likedSongs
-      )}
-    </>
+    <Router>
+      <Routes>
+        <Route path="/callback" element={<Callback />} />
+        <Route path="/login" element={<SpotifyLogin />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

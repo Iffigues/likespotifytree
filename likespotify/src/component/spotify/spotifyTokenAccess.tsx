@@ -9,6 +9,7 @@ const getAccessToken = async () => {
   params.append('grant_type', 'client_credentials');
   params.append('client_id', process.env.REACT_APP_SPOTIFY_CLIENT_ID);
   params.append('client_secret', process.env.REACT_APP_SPOTIFY_CLIENT_SECRET);
+  params.append('scope', 'user-library-read');
   try {
     const response = await axios.post(
       'https://accounts.spotify.com/api/token',
