@@ -21,7 +21,6 @@ const getLikedSongs = async (accessToken: string|null) => {
   } catch (error) {
     if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
       console.error('Access token expired. Refreshing...');
-      // Implémentez la logique pour rafraîchir le jeton d'accès (utilisez le jeton de rafraîchissement s'il est disponible)
     }
 
     console.error('Error fetching saved tracks:', error);
