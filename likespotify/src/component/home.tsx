@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import LikedComponent from './likedComponent';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 
 const Home: React.FC = () => {
      const navigate = useNavigate();
     const [isConnected, setConnected] = useState(false);
-  const [likedSongs, setLikedSongs] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let connected = localStorage.getItem('isConnected');
@@ -16,7 +14,7 @@ const Home: React.FC = () => {
         navigate('/login');
     }
     setConnected(true)
-    }, []);
+    }, [navigate]);
 
   return (
     <div className="App">

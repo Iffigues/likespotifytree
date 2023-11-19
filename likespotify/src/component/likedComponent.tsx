@@ -5,6 +5,10 @@ import AlbumTrack from './albumtrack';
 import Grid from '@material-ui/core/Grid';
 import LikeSong from './spotify/likeSong';
 import UnLikeSong from './spotify/unlikeSong';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Tooltip from '@mui/material/Tooltip';
+
 
 const LikedComponent: React.FC = () => {
   const navigate = useNavigate();
@@ -24,7 +28,6 @@ const LikedComponent: React.FC = () => {
             ...song,
             liked: true,
           }));
-          console.log("ez", newArray);
           setLikedSongs(newArray);
         } else {
           navigate('/login');
@@ -62,28 +65,38 @@ const LikedComponent: React.FC = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>Chargement en cours</p>
       ) : (
         
-        <div>
-         {likedSongs.length === 0 ? (
-            <p>no liked songs</p>):(<>
-          <Grid container spacing={1}>
-            <Grid item xs={10}>
-              <center>
-                <img
-                  src={likedSongs[selected]?.track?.album?.images[0]?.url || ''}
-                  alt="Album Cover"
-                />
+        <div >
+  
+          <Grid container spacing={1}   style={{'height': "610px", 'maxHeight': "610px",'backgroundColor': "black"}}>
+            <Grid item xs={10} style={{'height': "600px", 'maxHeight': "600px",'backgroundColor': "black"}}>
+              <center style={{'height': "600px", 'maxHeight': "600px",'backgroundColor': "black"}}>
+                {likedSongs.length === 0 ? (<p>no album found</p>) : (
+                    <img
+                        style={{'height': "600px", 'maxHeight': "600px",'backgroundColor': "black"}}
+                        src={likedSongs[selected]?.track?.album?.images[0]?.url || ''}
+                        alt="Album Cover"
+                    />)
+                }
               </center>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={2} style={{'height': "600px", 'maxHeight': "600px",'backgroundColor': "black"}}>
               <AlbumTrack album={likedSongs[selected]?.track?.album?.id || ''} />
             </Grid>
           </Grid>
           <Grid container spacing={1}>
+            <Grid container spacing={1}>
+                <Grid item xs={2}>
+                    <p>Les musiques Spotify ont été chargées</p>
+                </Grid>
+                <Grid item xs={2}>
+                    <p>les {likedSongs.length} musique(s) Spotify ont été chargées</p>
+                </Grid>
+            </Grid>
             {likedSongs.map((song, index) => (
-              <Grid container item key={song.id} xs={12} spacing={1}>
+              <Grid container item key={index} xs={12} spacing={1}>
                 <Grid item xs={2}>
                   <p key={index} onClick={() => setSelected(index)}>
                     {song.track.name}
@@ -91,14 +104,15 @@ const LikedComponent: React.FC = () => {
                 </Grid>
                 <Grid item xs={2}>
                   {song.liked ? (
-                    <button onClick={() => handleLikeToggle(index)}>Unlike</button>
-                  ) : (
-                    <button onClick={() => handleLikeToggle(index)}>Like</button>
-                  )}
+                    <Tooltip title="Enlever de Titres likés" arrow>
+                    <FavoriteIcon  color="action" fontSize="large" onClick={() => handleLikeToggle(index)} /></Tooltip>
+                    ) : (
+                     <Tooltip title="Ajouter aux Titres likés" arrow><FavoriteBorderIcon  color="action" fontSize="large" onClick={() => handleLikeToggle(index)} /></Tooltip>
+                 )}
                 </Grid>
               </Grid>
             ))}
-          </Grid></>)}
+          </Grid>
         </div>
       )}
     </>

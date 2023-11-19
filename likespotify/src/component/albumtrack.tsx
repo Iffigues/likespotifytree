@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import GetAlbum from './spotify/album';
-import { Navigate, useNavigate } from 'react-router-dom';
 import { List, ListItem, Paper, makeStyles } from '@material-ui/core';
+import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxHeight: '300px', // Set the maximum height for the scrollbar
+    maxHeight: '300px',
     overflowY: 'auto',
   },
   listItem: {
     borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+      title: {
+    marginBottom: theme.spacing(2),
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 }));
 
@@ -37,12 +42,15 @@ const AlbumTrack: React.FC<{ album: string }> = ({ album }) => {
   }, [album]); // Include album in the dependency array
 
   return (
-    <>
+    <div style={{'height': "600px", 'maxHeight': "600px",'backgroundColor': "black"}}>
       {isLoading ? (
         <p>is loading...</p>
       ) : (
-        <Paper className={classes.root}>
-          <List>
+        <Paper className={classes.root} style={{'height': "600px", 'maxHeight': "600px", 'backgroundColor': "grey"}}>
+        <Typography variant="h6" className={classes.title}>
+            <p>Morceaux de l'album</p>
+        </Typography>
+          <List style={{'height': "600px", 'maxHeight': "600px"}}>
             {albumSongs.map((song, index) => (
               <ListItem key={index} className={classes.listItem}>
                 {song.name}
@@ -51,7 +59,7 @@ const AlbumTrack: React.FC<{ album: string }> = ({ album }) => {
           </List>
         </Paper>
       )}
-    </>
+    </div>
   );
 };
 

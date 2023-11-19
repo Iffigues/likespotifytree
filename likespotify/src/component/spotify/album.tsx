@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 const GetAlbum = async (accessToken: string|null, album: string) => {
    try {
@@ -19,10 +19,10 @@ const GetAlbum = async (accessToken: string|null, album: string) => {
     return savedTracks;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
-      console.error('Aaaaaa', error);
+      console.error( error);
     }
 
-    console.error('mmmm', error);
+    console.error(error);
     throw error;
   }
 };

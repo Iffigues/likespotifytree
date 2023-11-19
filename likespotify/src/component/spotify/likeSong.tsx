@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 const LikeSong = async (accessToken: string | null, ids: string) => {
   try {
