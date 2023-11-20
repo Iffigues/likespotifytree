@@ -88,15 +88,15 @@ const LikedComponent: React.FC = () => {
           </Grid>
           <Grid container spacing={1}>
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} style={{"paddingLeft": "20px"}}>
                     <p>Les musiques Spotify ont été chargées</p>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={3} style={{"paddingLeft": "20px"}}>
                     <p>les {likedSongs.length} musique(s) Spotify ont été chargées</p>
                 </Grid>
             </Grid>
             {likedSongs.map((song, index) => (
-              <Grid container item key={index} xs={12} spacing={1}>
+              <Grid container item key={index} xs={12} spacing={1} style={{"paddingLeft": "20px"}}>
                 <Grid item xs={2}>
                   <p key={index} onClick={() => setSelected(index)}>
                     {song.track.name}
