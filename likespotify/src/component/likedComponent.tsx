@@ -33,7 +33,6 @@ const LikedComponent: React.FC = () => {
           navigate('/login');
         }
       } catch (error) {
-        console.error('Error fetching liked songs:', error);
         localStorage.setItem('isConnected', 'false');
         navigate('/login');
       } finally {
@@ -96,7 +95,7 @@ const LikedComponent: React.FC = () => {
                 </Grid>
             </Grid>
             {likedSongs.map((song, index) => (
-              <Grid container item key={index} xs={12} spacing={1} style={{"paddingLeft": "20px"}}>
+              <Grid container item key={index} xs={12} spacing={1} style={{"paddingLeft": "20px",       backgroundColor: index === selected ? "lightblue" : "transparent",}} >
                 <Grid item xs={2}>
                   <p key={index} onClick={() => setSelected(index)}>
                     {song.track.name}
@@ -105,7 +104,7 @@ const LikedComponent: React.FC = () => {
                 <Grid item xs={2}>
                   {song.liked ? (
                     <Tooltip title="Enlever de Titres likés" arrow>
-                    <FavoriteIcon  color="action" fontSize="large" onClick={() => handleLikeToggle(index)} /></Tooltip>
+                    <FavoriteIcon  color="action" fontSize="large" onClick={() => handleLikeToggle(index)}/></Tooltip>
                     ) : (
                      <Tooltip title="Ajouter aux Titres likés" arrow><FavoriteBorderIcon  color="action" fontSize="large" onClick={() => handleLikeToggle(index)} /></Tooltip>
                  )}
