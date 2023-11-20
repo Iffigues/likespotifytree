@@ -77,8 +77,8 @@ const LikedComponent: React.FC = () => {
                         style={{'height': "600px", 'maxHeight': "600px",'backgroundColor': "black"}}
                         src={likedSongs[selected]?.track?.album?.images[0]?.url || ''}
                         alt="Album Cover"
-                    />)
-                }
+                    />
+                )}
               </center>
             </Grid>
             <Grid item xs={2} style={{'height': "600px", 'maxHeight': "600px",'backgroundColor': "black"}}>
@@ -96,6 +96,12 @@ const LikedComponent: React.FC = () => {
             </Grid>
             {likedSongs.map((song, index) => (
               <Grid container item key={index} xs={12} spacing={1} style={{"paddingLeft": "20px",       backgroundColor: index === selected ? "lightblue" : "transparent",}} >
+                <Grid item xs={1}>
+                    <img
+                        src={song?.track?.album?.images[2]?.url || ''}
+                        alt="Album thumbnail"
+                    />
+                </Grid>
                 <Grid item xs={2}>
                   <p key={index} onClick={() => setSelected(index)}>
                     {song.track.name}
