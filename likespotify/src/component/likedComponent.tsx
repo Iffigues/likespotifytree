@@ -99,6 +99,7 @@ const LikedComponent: React.FC = () => {
               <Grid container item key={index} xs={12} spacing={1} style={{"paddingLeft": "20px",       backgroundColor: index === selected ? "lightblue" : "transparent",}} >
                 <Grid item xs={1}>
                     <img
+                        onClick={() => setSelected(index)}
                         src={song?.track?.album?.images[2]?.url || ''}
                         alt="Album thumbnail"
                     />
