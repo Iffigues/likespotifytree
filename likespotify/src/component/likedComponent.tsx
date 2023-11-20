@@ -87,6 +87,7 @@ const LikedComponent: React.FC = () => {
           </Grid>
           <Grid container spacing={1}>
             <Grid container spacing={1}>
+                <Grid item xs={1}></Grid>
                 <Grid item xs={2} style={{"paddingLeft": "20px"}}>
                     <p>Les musiques Spotify ont été chargées</p>
                 </Grid>
